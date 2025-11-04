@@ -10,6 +10,9 @@ on:  # Trigger syntex
         branches:
             - master
 
+    workflow_dispatch:
+        
+
 
 jobs:
     on-push:  # Job name and it is Job 1
