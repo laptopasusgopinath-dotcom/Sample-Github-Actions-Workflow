@@ -1,0 +1,14 @@
+name: "Multi event pipeline / workflow"  # Name of the pipeline
+
+on:  # Trigger syntex
+    push:  # Event: Whenever a push is made to the repository on the main branch
+        branches:
+            - main
+
+
+jobs:
+    on-push:  # Job name
+        runs-on: ubuntu-latest
+        steps: # Steps to be executed in the job
+            - name: "Running on main push" # Step 1
+              run: echo "Running on main push"
