@@ -1,14 +1,28 @@
 name: "Multi event pipeline / workflow"  # Name of the pipeline
 
 on:  # Trigger syntex
-    push:  # Event: Whenever a push is made to the repository on the main branch
+    push:  # Event: Whenever a push is made to the repository on the main/test branch
         branches:
             - main
+            - test
+    
+    pull_request: # Event: Whenever a pull request is made to the repository
+        branches:
+            - master
 
 
 jobs:
-    on-push:  # Job name
+    on-push:  # Job name and it is Job 1
+        if: github.event_name == 'push'
         runs-on: ubuntu-latest
         steps: # Steps to be executed in the job
-            - name: "Running on main push" # Step 1
-              run: echo "Running on main push"
+            - name: "Running on main/test push" # Step 1
+              run: echo "Running on main/test push"
+
+    
+    on-pull-request: # Job name and it is Job 2
+        if: github.event_name == 'pull_request'
+        runs-on: ubuntu-latest
+        steps: # Steps to be executed in the job
+            - name: "Running on pull request" # Step 1
+              run: echo "Running on pul request"
